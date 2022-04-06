@@ -16,10 +16,12 @@ use App\Http\Controllers\PerwalianController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('template.app');
+// });
 Route::get('/', function () {
-    return view('auth.login');
+    return view('template.dashboard');
 });
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
