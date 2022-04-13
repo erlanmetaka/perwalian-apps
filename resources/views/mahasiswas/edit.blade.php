@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('template.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Aplikasi Perwalian</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- include summernote css -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-</head>
-
-<body>
-
+@section('content')
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-12">
@@ -51,14 +38,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="npm">NPM</label>
+                                <label for="nim">NIM</label>
                                 <input type="text"
-                                    name="npm" id="npm"
-                                    class="form-control @error('npm') is-invalid @enderror" name="npm" id="npm"
-                                    value="{{ old('npm', $mahasiswa->npm) }}" required>
+                                    name="nim" id="nim"
+                                    class="form-control @error('nim') is-invalid @enderror" name="nim" id="nim"
+                                    value="{{ old('nim', $mahasiswa->nim) }}" required>
 
                                 <!-- error message untuk content -->
-                                @error('npm')
+                                @error('nim')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -81,14 +68,44 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="dosen_id">Nama Dosen Wali</label>
+                                <label for="alamat">Alamat</label>
                                 <input type="text"
-                                    name="dosen_id" id="dosen_id"
-                                    class="form-control @error('dosen_id') is-invalid @enderror" name="dosen_id" id="dosen_id"
-                                    value="{{ old('dosen_id', $mahasiswa->dosen->nama) }}" required>
+                                    name="alamat" id="alamat"
+                                    class="form-control @error('alamat') is-invalid @enderror" name="alamat" id="alamat"
+                                    value="{{ old('alamat', $mahasiswa->alamat) }}" required>
 
                                 <!-- error message untuk content -->
-                                @error('dosen_id')
+                                @error('alamat')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            {{-- <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text"
+                                    name="email" id="email"
+                                    class="form-control @error('email') is-invalid @enderror" name="email" id="email"
+                                    value="{{ old('email', $mahasiswa->email) }}" required>
+
+                                <!-- error message untuk content -->
+                                @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div> --}}
+
+                            <div class="form-group">
+                                <label for="kontak">Kontak</label>
+                                <input type="text"
+                                    name="kontak" id="kontak"
+                                    class="form-control @error('kontak') is-invalid @enderror" name="kontak" id="kontak"
+                                    value="{{ old('kontak', $mahasiswa->kontak) }}" required>
+
+                                <!-- error message untuk content -->
+                                @error('kontak')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -104,20 +121,4 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- include summernote js -->
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#content').summernote({
-                height: 250, //set editable area's height
-            });
-        })
-    </script>
-</body>
-
-</html>
+@endsection

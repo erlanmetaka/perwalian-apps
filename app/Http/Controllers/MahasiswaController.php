@@ -26,10 +26,6 @@ class MahasiswaController extends Controller
      */
     public function create()
     {   
-        // $mahasiswas = Mahasiswa::pluck('nama', 'dosen_id');
-        // $dosen = Mahasiswa::with('dosen')->select(['nama', 'dosen_id'])->get();
-        // var_dump($dosen);die;
-       
         return view('mahasiswas.create');
     }
 
@@ -117,18 +113,22 @@ class MahasiswaController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required|string|',
-            'npm' => 'required',
+            'nim' => 'required',
             'jurusan' => 'required',
-            'dosen_id' => 'required',
+            // 'email' =>  ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'kontak' => 'required',
+            'alamat' => 'required',
         ]);
 
         $mahasiswa = Mahasiswa::findOrFail($id);
 
         $mahasiswa->update([
             'nama' => $request->nama,
-            'npm' => $request->npm,
+            'nim' => $request->nim,
             'jurusan' => $request->jurusan,
-            'dosen_id' => $request->dosen_id,
+            // 'email' => $request->email,
+            'kontak' => $request->kontak,
+            'alamat' => $request->alamat
         ]);
 
         if ($mahasiswa) {
