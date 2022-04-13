@@ -12,4 +12,15 @@ class DosenWali extends Model
     protected $fillable = [
         'dosen_id', 'mahasiswa_id'
     ];
+
+    public function dosen()
+    {
+        return $this->belongsTo('App\Models\Dosen', 'dosen_id');
+    }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo('App\Models\Mahasiswa', 'mahasiswa_id');
+    }
+
 }

@@ -21,10 +21,14 @@
         </li>
         <li><a><i class="fa fa-edit"></i> Perwalian <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
+            @can('view data dosen wali', Post::class)
             <li><a href="/dosen_wali">Data Dosen Wali</a></li>
+            @endcan
+
             <li><a href="/perwalian">Perwalian</a></li>
           </ul>
         </li>
+        @can('view data master', Post::class)
         <li><a><i class="fa fa-desktop"></i> Data Master <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             {{-- <li><a href="{{ route('register') }}" >Data User</a></li> --}}
@@ -32,6 +36,7 @@
             <li><a href="/mahasiswa">Data Mahasiswa</a></li>
           </ul>
         </li>
+        @endcan
        
       </ul>
     </div>

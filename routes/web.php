@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PerwalianController;
+use App\Http\Controllers\DosenWaliController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('dosen', DosenController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::resource('perwalian', PerwalianController::class);
+Route::resource('dosen_wali', DosenWaliController::class);
 // Route::resource('users', \App\Http\Controllers\UserController::class)
 //     ->middleware('auth');
 // Route::resource('user', UserController::class);

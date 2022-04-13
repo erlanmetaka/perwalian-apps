@@ -25,6 +25,9 @@ class PermissionDemoSeeder extends Seeder
         Permission::create(['name' => 'create perwalian']);
         Permission::create(['name' => 'edit perwalian']);
         Permission::create(['name' => 'delete perwalian']);
+        Permission::create(['name' => 'view data master']);
+        Permission::create(['name' => 'view data dosen wali']);
+
 
         //create roles and assign existing permissions
         $mahasiswaRole = Role::create(['name' => 'mahasiswa']);

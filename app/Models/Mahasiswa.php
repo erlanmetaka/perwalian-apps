@@ -16,4 +16,9 @@ class Mahasiswa extends Model
     {
       return $this->belongsTo('App\Models\User', 'user_id');
     }
+
+    public function dosenWalis()
+    {
+      return $this->hasMany('App\Models\DosenWali');
+    }
 }
