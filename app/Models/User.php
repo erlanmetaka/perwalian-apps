@@ -23,6 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'user_id'
     ];
 
     /**
@@ -43,4 +45,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function dosens()
+    {
+        return $this->hasMany('App\Models\Dosen');
+    }
+
+    public function mahasiswas()
+    {
+        return $this->hasMany('App\Models\Mahasiswa');
+    }
 }

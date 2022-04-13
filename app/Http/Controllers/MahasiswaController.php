@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -26,9 +27,10 @@ class MahasiswaController extends Controller
     public function create()
     {   
         // $mahasiswas = Mahasiswa::pluck('nama', 'dosen_id');
-        $dosen = Mahasiswa::with('dosen')->select(['nama', 'dosen_id'])->get();
-        var_dump($dosen);die;
-        return view('mahasiswas.create')->with($dosen);
+        // $dosen = Mahasiswa::with('dosen')->select(['nama', 'dosen_id'])->get();
+        // var_dump($dosen);die;
+       
+        return view('mahasiswas.create');
     }
 
     /**
@@ -41,17 +43,29 @@ class MahasiswaController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required|string|',
-            'npm' => 'required',
+            'nim' => 'required',
             'jurusan' => 'required',
-            'dosen_id' =>'required'
+            'email' =>  ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'kontak' => 'required',
+            'alamat' => 'required',
         ]);
 
         $mahasiswa = mahasiswa::create([
             'nama' => $request->nama,
-            'npm' => $request->npm,
+            'nim' => $request->nim,
             'jurusan' => $request->jurusan,
-            'dosen_id' => $request->dosen_id,
+            'email' => $request->email,
+            'kontak' => $request->kontak,
+            'alamat' => $request->alamat
         ]);
+        $user = User::create([
+            'name' => $mahasiswa->nama,
+            'email' => $mahasiswa->email,
+            'password' => bcrypt('12345678'),
+            'role_id' => 1,
+            'user_id' => $mahasiswa->id
+        ]); 
+        $user->assignRole(1);
 
         if ($mahasiswa) {
             return redirect()

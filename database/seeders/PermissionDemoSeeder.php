@@ -41,22 +41,24 @@ class PermissionDemoSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Erlan Metaka',
             'email' => 'erlan@gmail.com',
-            'password' => bcrypt('12345678')
-        ]);
-        $user->assignRole($mahasiswaRole);
-
-        $user = User::factory()->create([
-            'name' => 'Siti Yulianti',
-            'email' => 'siti@gmail.com',
-            'password' => bcrypt('12345678')
-        ]);
-        $user->assignRole($dosenRole);
-
-        $user = User::factory()->create([
-            'name' => 'Kahfi',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('12345678')
+            'password' => bcrypt('12345678'),
+            'user_id' => 100,
+            'role_id' => 3
         ]);
         $user->assignRole($adminRole);
+
+        // $user = User::factory()->create([
+        //     'name' => 'Siti Yulianti',
+        //     'email' => 'siti@gmail.com',
+        //     'password' => bcrypt('12345678')
+        // ]);
+        // $user->assignRole($dosenRole);
+
+        // $user = User::factory()->create([
+        //     'name' => 'Kahfi',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => bcrypt('12345678')
+        // ]);
+        // $user->assignRole($adminRole);
     }
 }

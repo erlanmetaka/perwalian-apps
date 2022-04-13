@@ -9,11 +9,11 @@ class Mahasiswa extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama', 'npm', 'jurusan', 'dosen_id'
+        'nama', 'nim', 'jurusan', 'email', 'kontak', 'alamat'
     ];
 
-    public function dosen()
+    public function user()
     {
-        return $this->belongsTo(Dosen::class);
+      return $this->belongsTo('App\Models\User', 'user_id');
     }
 }

@@ -17,10 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('isi_perwalian');
-            $table->unsignedBigInteger('mahasiswa_id');
-            $table->foreign('mahasiswa_id')->references('id')->on('mahasiswas')->onDelete('cascade');
-            $table->unsignedBigInteger('dosen_id');
-            $table->foreign('dosen_id')->references('id')->on('dosens')->onDelete('cascade');
+            $table->string('semester');
+            $table->unsignedBigInteger('dosenwali_id');
+            $table->foreign('dosenwali_id')->references('id')->on('dosen_walis')->onDelete('cascade');
             $table->timestamps();
         });
     }

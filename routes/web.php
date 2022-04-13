@@ -20,7 +20,7 @@ use App\Http\Controllers\PerwalianController;
 //     return view('template.app');
 // });
 Route::get('/', function () {
-    return view('template.dashboard');
+    return view('auth.login');
 });
 Auth::routes();
 
@@ -28,3 +28,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('dosen', DosenController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::resource('perwalian', PerwalianController::class);
+// Route::resource('users', \App\Http\Controllers\UserController::class)
+//     ->middleware('auth');
+// Route::resource('user', UserController::class);

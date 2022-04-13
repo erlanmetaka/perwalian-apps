@@ -17,11 +17,11 @@
     <div class="menu_section">
       <h3>General</h3>
       <ul class="nav side-menu">
-        <li><a><i class="fa fa-home"></i> Home</a>
+        <li><a href="/home"><i class="fa fa-home"></i> Home</a>
         </li>
         <li><a><i class="fa fa-edit"></i> Perwalian <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="form.html">General Form</a></li>
+            <li><a href="/perwalian">Data Perwalian</a></li>
             <li><a href="form_advanced.html">Advanced Components</a></li>
             <li><a href="form_validation.html">Form Validation</a></li>
             <li><a href="form_wizards.html">Form Wizard</a></li>
@@ -31,8 +31,9 @@
         </li>
         <li><a><i class="fa fa-desktop"></i> Data Master <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="general_elements.html">Data Dosen</a></li>
-            <li><a href="media_gallery.html">Data Mahasiswa</a></li>
+            <li><a href="{{ route('register') }}" >Data User</a></li>
+            <li><a href="/dosen">Data Dosen</a></li>
+            <li><a href="/mahasiswa">Data Mahasiswa</a></li>
           </ul>
         </li>
        
