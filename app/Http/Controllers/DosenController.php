@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DosenController extends Controller
@@ -38,13 +39,27 @@ class DosenController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required|string|',
-            'nip' => 'required'
+            'nip' => 'required',
+            'email' =>  ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'kontak' => 'required',
+            'alamat' => 'required',
         ]);
 
         $dosen = Dosen::create([
             'nama' => $request->nama,
-            'nip' => $request->nip
+            'nip' => $request->nip,
+            'email' => $request->email,
+            'kontak' => $request->kontak,
+            'alamat' => $request->alamat
         ]);
+        $user = User::create([
+            'name' => $dosen->nama,
+            'email' => $dosen->email,
+            'password' => bcrypt('12345678'),
+            'role_id' => 2,
+            'user_id' => $dosen->id
+        ]); 
+        $user->assignRole(2);
 
         if ($dosen) {
             return redirect()
@@ -96,14 +111,20 @@ class DosenController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required|string|',
-            'nip' => 'required'
+            'nip' => 'required',
+            'email' =>  ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'kontak' => 'required',
+            'alamat' => 'required',
         ]);
 
         $dosen = Dosen::findOrFail($id);
 
         $dosen->update([
             'nama' => $request->nama,
-            'nip' => $request->nip
+            'nip' => $request->nip,
+            'email' => $request->email,
+            'kontak' => $request->kontak,
+            'alamat' => $request->alamat
         ]);
 
         if ($dosen) {

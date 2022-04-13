@@ -1,7 +1,6 @@
 @extends('template.app')
 
 @section('content')
-
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-12">
@@ -52,6 +51,46 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" id="email"
+                                    class="form-control @error('email') is-invalid @enderror"
+                                    valu="{{ old('email') }}" required>
+
+                                <!-- error message untuk content -->
+                                @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="kontak">Kontak</label>
+                                <input type="text" class="form-control @error('kontak') is-invalid @enderror"
+                                    name="kontak" value="{{ old('kontak') }}" required>
+
+                                <!-- error message untuk title -->
+                                @error('kontak')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="alamat">Alamat</label>
+                                <input type="text" class="form-control @error('alamat') is-invalid @enderror"
+                                    name="alamat" value="{{ old('alamat') }}" required>
+
+                                <!-- error message untuk title -->
+                                @error('alamat')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
                             <button type="submit" class="btn btn-md btn-primary">Save</button>
                             <a href="{{ route('dosen.index') }}" class="btn btn-md btn-secondary">back</a>
 
@@ -61,5 +100,4 @@
             </div>
         </div>
     </div>
-
 @endsection
