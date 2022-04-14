@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DosenWali;
 use App\Models\Mahasiswa;
+use App\Models\Dosen;
 use Illuminate\Http\Request;
 
 class DosenWaliController extends Controller
@@ -27,8 +28,8 @@ class DosenWaliController extends Controller
     public function create()
     {
         $mahasiswas = Mahasiswa::all();
-        // var_dump($mahasiswas);die;
-        return view('dosen_wali.create', compact('mahasiswas'));
+        $dosens = Dosen::all();
+        return view('dosen_wali.create', compact('mahasiswas', 'dosens'));
     }
 
     /**
@@ -84,7 +85,8 @@ class DosenWaliController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dosenWali = DosenWali::findOrFail($id);
+        return view('dosen_wali.edit', compact('dosenWali'));
     }
 
     /**
@@ -96,7 +98,31 @@ class DosenWaliController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'dosen_id' => 'required',
+            'mahasiswa_id' => 'required',
+        ]);
+
+        $dosenWali = DosenWali::findOrFail($id);
+        $dosenWali->update([
+            'dosen_id' => $request->dosen_id,
+            'mahasiswa_id' => $request->mahasiswa_id,
+        ]);
+
+        if ($dosenWali) {
+            return redirect()
+                ->route('dosen_wali.index')
+                ->with([
+                    'success' => 'Data Dosen Wali berhasil diinput'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Maaf Coba Lagi'
+                ]);
+        }
     }
 
     /**
@@ -107,6 +133,21 @@ class DosenWaliController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dosenWali = DosenWali::findOrFail($id);
+        $dosenWali->delete();
+
+        if ($dosenWali) {
+            return redirect()
+                ->route('dosen_wali.index')
+                ->with([
+                    'success' => 'Data Dosen Wali berhasil dihapus'
+                ]);
+        } else {
+            return redirect()
+                ->route('dosen_wali.index')
+                ->with([
+                    'error' => 'Maaf Coba Lagi'
+                ]);
+        }
     }
 }

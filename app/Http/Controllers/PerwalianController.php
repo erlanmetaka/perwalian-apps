@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Perwalian;
+use App\Models\DosenWali;
+use App\Models\Dosen;
+use Auth;
 use Illuminate\Http\Request;
 
 class PerwalianController extends Controller
@@ -33,10 +36,10 @@ class PerwalianController extends Controller
      */
     public function create()
     {   
-        // $perwalians = perwalian::pluck('nama', 'dosen_id');
-        // $dosen = Perwalian::with('dosen')->select(['nama', 'dosen_id'])->get();
-        // var_dump($dosen);die;
-        return view('perwalians.create');
+        $user_id = Auth::user()->user_id;
+        $dosenWali = DosenWali::with(['dosen','mahasiswa'])->where('mahasiswa_id','=', $user_id)->get();
+        // dd($dosenWali[0]->dosen->nama);die;
+        return view('perwalians.create', compact('dosenWali'));
     }
 
     /**
@@ -50,15 +53,16 @@ class PerwalianController extends Controller
         $this->validate($request, [
             'judul' => 'required|string|',
             'isi_perwalian' => 'required',
-            'mahasiswa_id' => 'required',
-            'dosen_id' =>'required'
+            'semester' => 'required',
         ]);
 
+        $user_id = Auth::user()->user_id;
+        $dosenwali_id = DosenWali::select('id')->where('mahasiswa_id','=', $user_id)->firstOrFail();
         $perwalian = Perwalian::create([
             'judul' => $request->judul,
             'isi_perwalian' => $request->isi_perwalian,
-            'mahasiswa_id' => $request->mahasiswa_id,
-            'dosen_id' => $request->dosen_id,
+            'semester' => $request->semester,
+            'dosenwali_id' => $dosenwali_id->id,
         ]);
 
         if ($perwalian) {
@@ -112,17 +116,17 @@ class PerwalianController extends Controller
         $this->validate($request, [
             'judul' => 'required|string|',
             'isi_perwalian' => 'required',
-            'mahasiswa_id' => 'required',
-            'dosen_id' =>'required'
+            'semester' => 'required',
         ]);
 
         $perwalian = Perwalian::findOrFail($id);
-
+        $user_id = Auth::user()->user_id;
+        $dosenwali_id = DosenWali::select('id')->where('mahasiswa_id','=', $user_id)->firstOrFail();
         $perwalian->update([
             'judul' => $request->judul,
             'isi_perwalian' => $request->isi_perwalian,
-            'mahasiswa_id' => $request->mahasiswa_id,
-            'dosen_id' => $request->dosen_id,
+            'semester' => $request->semester,
+            'dosenwali_id' => $dosenwali_id->id,
         ]);
 
         if ($perwalian) {

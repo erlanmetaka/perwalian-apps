@@ -26,8 +26,12 @@
 
                             <div class="form-group">
                                 <label for="dosen_id">Nama Dosen</label>
-                                <input type="text" class="form-control @error('dosen_id') is-invalid @enderror"
-                                    name="dosen_id" value="{{ old('dosen_id') }}" required>
+                                <select name="dosen_id" class="form-control @error('dosen_id') is-invalid @enderror">
+                                    <option value="">-- Pilih Dosen --</option>
+                                    @foreach ($dosens as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                    @endforeach
+                                </select>
 
                                 <!-- error message untuk title -->
                                 @error('dosen_id')
@@ -40,7 +44,7 @@
                             <div class="form-group">
                                 <label for="mahasiswa_id">Nama Mahasiswa</label>
                                 <select name="mahasiswa_id" class="form-control @error('mahasiswa_id') is-invalid @enderror">
-                                    <option value="">- Pilih Mahasiswa -</option>
+                                    <option value="">-- Pilih Mahasiswa --</option>
                                     @foreach ($mahasiswas as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                     @endforeach

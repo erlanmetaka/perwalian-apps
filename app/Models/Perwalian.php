@@ -12,4 +12,9 @@ class Perwalian extends Model
     protected $fillable = [
         'judul', 'isi_perwalian', 'semester', 'dosenwali_id'
     ];
+
+    public function dosenWali()
+    {
+        return $this->belongsTo('App\Models\DosenWali', 'dosenwali_id');
+    }
 }

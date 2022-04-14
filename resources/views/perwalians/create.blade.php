@@ -20,7 +20,27 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Form Perwalian</h5>
+                                    <div class="col-sm-1">
+                                    <p class="card-text">Nama Mahasiswa</p>
+                                    <p class="card-text">NIM Mahasiswa</p>
+                                    <p class="card-text">Nama Dosen Wali</p>       
+                                    </div>
+                                    <div class="col-sm-3">
+                                    <p class="card-text">: {{ Auth::User()->name }}</p>
+                                    <p class="card-text">: {{ $dosenWali[0]->mahasiswa->nim }}</p>
+                                    <p class="card-text">: {{ $dosenWali[0]->dosen->nama }}</p>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            
+                        <br>
                         <form action="{{ route('perwalian.store') }}" method="POST">
                             @csrf
 
@@ -64,7 +84,7 @@
                                 </div>
                                 @enderror
                             </div>
-
+                            
                             <button type="submit" class="btn btn-md btn-primary">Save</button>
                             <a href="{{ route('perwalian.index') }}" class="btn btn-md btn-secondary">back</a>
 

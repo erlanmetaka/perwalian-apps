@@ -10,7 +10,7 @@ class DosenWali extends Model
     use HasFactory;
 
     protected $fillable = [
-        'dosen_id', 'mahasiswa_id'
+        'dosen_id', 'mahasiswa_id', 'user_id'
     ];
 
     public function dosen()
@@ -21,6 +21,11 @@ class DosenWali extends Model
     public function mahasiswa()
     {
         return $this->belongsTo('App\Models\Mahasiswa', 'mahasiswa_id');
+    }
+
+    public function perwalian()
+    {
+      return $this->hasMany('App\Models\Perwalian');
     }
 
 }

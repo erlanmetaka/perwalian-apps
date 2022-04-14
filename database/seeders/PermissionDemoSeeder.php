@@ -33,6 +33,8 @@ class PermissionDemoSeeder extends Seeder
         $mahasiswaRole = Role::create(['name' => 'mahasiswa']);
         $mahasiswaRole->givePermissionTo('view perwalian');
         $mahasiswaRole->givePermissionTo('create perwalian');
+        $mahasiswaRole->givePermissionTo('edit perwalian');
+        $mahasiswaRole->givePermissionTo('delete perwalian');
 
         $dosenRole = Role::create(['name' => 'dosen']);
         $dosenRole->givePermissionTo('view perwalian');

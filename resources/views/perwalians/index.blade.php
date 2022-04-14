@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('template.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Aplikasi Perwalian</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-
-<body>
-
+@section('content')
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
@@ -28,7 +17,7 @@
                     {{ session('error') }}
                 </div>
                 @endif
-
+                
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         @can('create perwalian', Post::class)
@@ -39,20 +28,20 @@
                         <table class="table table-bordered mt-1">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">NPM</th>
-                                    <th scope="col">Jurusan</th>
-                                    <th scope="col">Nama Dosen Wali</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Judul</th>
+                                    <th scope="col">Isi Perwalian</th>
+                                    <th scope="col">Semester</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($perwalians as $perwalian)
                                 <tr>
-                                    <td>{{ $perwalian->nama }}</td>
-                                    <td>{{ $perwalian->npm }}</td>
-                                    <td>{{ $perwalian->jurusan }}</td>
-                                    <td>{{ $perwalian->dosen->nama }}</td>
+                                    <td>{{ $perwalian->created_at }}</td>
+                                    <td>{{ $perwalian->judul }}</td>
+                                    <td>{{ $perwalian->isi_perwalian }}</td>
+                                    <td>{{ $perwalian->semester }}</td>
                                     <td class="text-center">
                                         @can('edit perwalian', Post::class)
                                         <a href="{{ route('perwalian.edit', $perwalian->id) }}"
@@ -84,9 +73,4 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-</body>
-
-</html>
+@endsection
