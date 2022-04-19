@@ -20,7 +20,8 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-
+                        <h5 class="card-title">Form Tambah Dosen Wali</h5>
+                        <br>
                         <form action="{{ route('dosen_wali.store') }}" method="POST">
                             @csrf
 
@@ -57,7 +58,7 @@
                                 </div>
                                 @enderror
                             </div>
-
+                            <br>
                             <button type="submit" class="btn btn-md btn-primary">Save</button>
                             <a href="{{ route('dosen_wali.index') }}" class="btn btn-md btn-secondary">back</a>
 

@@ -38,7 +38,7 @@
                                 </div>
                                 </div>
                             </div>
-                            </div>
+                        </div>
                             
                         <br>
                         <form action="{{ route('perwalian.store') }}" method="POST">
@@ -59,10 +59,10 @@
 
                             <div class="form-group">
                                 <label for="isi_perwalian">Isi Perwalian</label>
-                                <input type="text" name="isi_perwalian" id="isi_perwalian"
+                                <textarea name="isi_perwalian" id="isi_perwalian"
                                     class="form-control @error('isi_perwalian') is-invalid @enderror"
                                     value="{{ old('isi_perwalian') }}" required>
-
+                                </textarea>
                                 <!-- error message untuk content -->
                                 @error('isi_perwalian')
                                 <div class="invalid-feedback">
@@ -73,9 +73,12 @@
 
                             <div class="form-group">
                                 <label for="semester">Semester</label>
-                                <input type="text" name="semester" id="semester"
-                                    class="form-control @error('semester') is-invalid @enderror"
-                                    value="{{ old('semester') }}" required>
+                                <select name="semester" class="form-control @error('semester') is-invalid @enderror">
+                                    <option value="">-- Pilih Semester --</option>
+                                    <option value="Ganjil">Ganjil</option>
+                                    <option value="Genap">Genap</option>
+                                    <option value="Antara">Antara</option>
+                                </select>
 
                                 <!-- error message untuk content -->
                                 @error('semester')
@@ -84,7 +87,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            
+                            <br>
                             <button type="submit" class="btn btn-md btn-primary">Save</button>
                             <a href="{{ route('perwalian.index') }}" class="btn btn-md btn-secondary">back</a>
 

@@ -20,7 +20,8 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-
+                        <h5 class="card-title">Form Tambah Mahasiswa</h5>
+                        <br>
                         <form action="{{ route('mahasiswa.store') }}" method="POST">
                             @csrf
 
@@ -53,9 +54,11 @@
 
                             <div class="form-group">
                                 <label for="jurusan">Jurusan</label>
-                                <input type="text" name="jurusan" id="jurusan"
-                                    class="form-control @error('jurusan') is-invalid @enderror"
-                                    valu="{{ old('jurusan') }}" required>
+                                <select name="jurusan" class="form-control @error('jurusan') is-invalid @enderror">
+                                    <option value="">-- Pilih Jurusan --</option>
+                                    <option value="SI - Reguler Pagi">SI - Reguler Pagi</option>
+                                    <option value="SI - Reguler Sore">SI - Reguler Sore</option>
+                                </select>
 
                                 <!-- error message untuk content -->
                                 @error('jurusan')
@@ -104,7 +107,7 @@
                                 </div>
                                 @enderror
                             </div>
-
+                            <br>
                             <button type="submit" class="btn btn-md btn-primary">Save</button>
                             <a href="{{ route('mahasiswa.index') }}" class="btn btn-md btn-secondary">back</a>
 

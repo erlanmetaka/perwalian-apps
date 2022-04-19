@@ -20,7 +20,8 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-
+                        <h5 class="card-title">Form Tambah Dosen</h5>
+                        <br>
                         <form action="{{ route('dosen.store') }}" method="POST">
                             @csrf
 
@@ -80,8 +81,8 @@
 
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
-                                <input type="text" class="form-control @error('alamat') is-invalid @enderror"
-                                    name="alamat" value="{{ old('alamat') }}" required>
+                                <textarea class="form-control @error('alamat') is-invalid @enderror"
+                                    name="alamat" value="{{ old('alamat') }}" required> </textarea>
 
                                 <!-- error message untuk title -->
                                 @error('alamat')
@@ -91,6 +92,7 @@
                                 @enderror
                             </div>
 
+                            <br>
                             <button type="submit" class="btn btn-md btn-primary">Save</button>
                             <a href="{{ route('dosen.index') }}" class="btn btn-md btn-secondary">back</a>
 

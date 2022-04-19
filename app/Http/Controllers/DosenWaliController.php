@@ -86,7 +86,10 @@ class DosenWaliController extends Controller
     public function edit($id)
     {
         $dosenWali = DosenWali::findOrFail($id);
-        return view('dosen_wali.edit', compact('dosenWali'));
+        $dosens = Dosen::all();
+        $mahasiswas = Mahasiswa::all();
+        // dd($dosens);die;
+        return view('dosen_wali.edit', compact(['dosenWali', 'dosens', 'mahasiswas']));
     }
 
     /**

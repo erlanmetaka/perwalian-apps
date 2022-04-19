@@ -20,6 +20,8 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
+                        <h5 class="card-title">Form Ubah Dosen</h5>
+                        <br>
                         <form action="{{ route('dosen.update', $dosen->id) }}" method="POST">
                             @csrf
                             @method('PUT')

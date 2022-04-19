@@ -20,17 +20,21 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <form action="{{ route('dosen.update', $dosen->id) }}" method="POST">
+                        <form action="{{ route('dosen_wali.update', $dosenWali->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 
                             <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                    name="nama" value="{{ old('nama', $dosen->nama) }}" required>
+                                <label for="dosen_id">Nama Dosen</label>
+                                <select name="dosen_id" class="form-control @error('dosen_id') is-invalid @enderror">
+                                    <option value="">-- Pilih Dosen --</option>
+                                    @foreach ($dosens as $item)
+                                        <option value="{{ $item->id }}" {{ ($dosenWali->dosen_id == $item->id ? "selected":"") }}>{{ $item->nama }}</option>
+                                    @endforeach
+                                </select>
 
                                 <!-- error message untuk title -->
-                                @error('nama')
+                                @error('dosen_id')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -38,53 +42,26 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="nip">NIP</label>
-                                <input type="text"
-                                    name="nip" id="nip"
-                                    class="form-control @error('nip') is-invalid @enderror" name="nip" id="nip"
-                                    value="{{ old('nip', $dosen->nip) }}" required>
+                                <label for="mahasiswa_id">Nama Mahasiswa</label>
+                                <select name="mahasiswa_id" class="form-control @error('mahasiswa_id') is-invalid @enderror">
+                                    <option value="">-- Pilih Mahasiswa --</option>
+                                    @foreach ($mahasiswas as $item)
+                                         <option value="{{ $item->id }}" {{ ($dosenWali->mahasiswa_id == $item->id ? "selected":"") }}>{{ $item->nama }}</option>
+                                    @endforeach
+                                </select>
 
                                 <!-- error message untuk content -->
-                                @error('nip')
+                                @error('mahasiswa_id')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="alamat">Alamat</label>
-                                <input type="text"
-                                    name="alamat" id="alamat"
-                                    class="form-control @error('alamat') is-invalid @enderror" name="alamat" id="alamat"
-                                    value="{{ old('alamat', $dosen->alamat) }}" required>
-
-                                <!-- error message untuk content -->
-                                @error('alamat')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="kontak">Kontak</label>
-                                <input type="text"
-                                    name="kontak" id="kontak"
-                                    class="form-control @error('kontak') is-invalid @enderror" name="kontak" id="kontak"
-                                    value="{{ old('kontak', $dosen->kontak) }}" required>
-
-                                <!-- error message untuk content -->
-                                @error('kontak')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-
+                           
+                            <br>
                             <button type="submit" class="btn btn-md btn-primary">Update</button>
-                            <a href="{{ route('dosen.index') }}" class="btn btn-md btn-secondary">back</a>
+                            <a href="{{ route('dosen_wali.index') }}" class="btn btn-md btn-secondary">back</a>
                         </form>
                     </div>
                 </div>

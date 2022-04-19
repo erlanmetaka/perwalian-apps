@@ -101,7 +101,9 @@ class PerwalianController extends Controller
     public function edit($id)
     {
         $perwalian = Perwalian::findOrFail($id);
-        return view('perwalians.edit', compact('perwalian'));
+        $user_id = Auth::user()->user_id;
+        $dosenWali = DosenWali::with(['dosen','mahasiswa'])->where('mahasiswa_id','=', $user_id)->get();
+        return view('perwalians.edit', compact(['perwalian', 'dosenWali']));
     }
 
     /**

@@ -20,6 +20,8 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
+                        <h5 class="card-title">Data Dosen</h5>
+                        <br>
                         <a href="{{ route('dosen.create') }}" class="btn btn-md btn-success mb-3 float-right">Tambah
                             Dosen</a>
 
@@ -65,4 +67,4 @@
             </div>
         </div>
     </div>
-    @endsection
+@endsection

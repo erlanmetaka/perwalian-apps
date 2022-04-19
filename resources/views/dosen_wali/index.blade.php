@@ -20,8 +20,10 @@
 
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
+                        <h5 class="card-title">Data Dosen Wali</h5>
+                        <br>
                         <a href="{{ route('dosen_wali.create') }}" class="btn btn-md btn-success mb-3 float-right">Tambah
-                            Dosen</a>
+                            Dosen Wali</a>
 
                         <table class="table table-bordered mt-1">
                             <thead>
