@@ -8,10 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	{{-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> --}}
 
-    <title>Gentelella Alela! | </title>
+    <title>Perwalian Apps </title>
 
     <!-- Bootstrap -->
     <link href="{{ asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- NProgress -->
@@ -28,6 +30,11 @@
 
     <!-- Custom Theme Style -->
     <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js" type="text/javascript"></script>
+   
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" type="text/javascript"></script>
+    
   </head>
 
   <body class="nav-md">
@@ -55,6 +62,11 @@
 
     <!-- jQuery -->
     <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript"></script>
+   
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.15/dist/sweetalert2.all.min.js" type="text/javascript"></script>
+    {{-- <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script> --}}
     <!-- Bootstrap -->
     <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <!-- FastClick -->
@@ -93,6 +105,6 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-	
+
   </body>
 </html>

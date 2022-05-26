@@ -22,6 +22,9 @@
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         <div class="row">
+                            @if ( Auth::user()->role_id == '3' )
+                            <br>
+                            @else
                             <div class="col-sm-12">
                                 <div class="card">
                                 <div class="card-body">
@@ -39,11 +42,28 @@
                                 </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                         <br>
                         <form action="{{ route('perwalian.update', $perwalian->id) }}" method="POST">
                             @csrf
                             @method('PUT')
+
+                            <div class="form-group">
+                                <label for="jenis_perwalian">Jenis Perwalian</label>
+                                <select name="jenis_perwalian" class="form-control @error('jenis_perwalian') is-invalid @enderror">
+                                    <option value="">-- Pilih Jenis Perwalian --</option>
+                                    <option value="konsultasi" @if ($perwalian->jenis_perwalian == "konsultasi")  {{ 'selected' }} @endif >Konsultasi</option>
+                                    <option value="mata kuliah" @if ($perwalian->jenis_perwalian == "mata kuliah")  {{ 'selected' }} @endif>Mata Kuliah</option>
+                                </select>
+
+                                <!-- error message untuk content -->
+                                @error('semester')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
 
                             <div class="form-group">
                                 <label for="judul">Judul</label>
@@ -88,6 +108,20 @@
                                 </div>
                                 @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label for="tahun_ajaran">Tahun Ajaran</label>
+                                <input type="text" class="form-control @error('tahun_ajaran') is-invalid @enderror"
+                                    name="tahun_ajaran" value="{{ old('tahun_ajaran', $perwalian->tahun_ajaran) }}" required>
+
+                                <!-- error message untuk title -->
+                                @error('tahun_ajaran')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
                             <br>
                             <button type="submit" class="btn btn-md btn-primary">Update</button>
                             <a href="{{ route('perwalian.index') }}" class="btn btn-md btn-secondary">back</a>

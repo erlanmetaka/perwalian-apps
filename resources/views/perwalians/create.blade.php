@@ -45,6 +45,22 @@
                             @csrf
 
                             <div class="form-group">
+                                <label for="jenis_perwalian">Jenis Perwalian</label>
+                                <select name="jenis_perwalian" class="form-control @error('jenis_perwalian') is-invalid @enderror">
+                                    <option value="">-- Pilih Jenis Perwalian --</option>
+                                    <option value="konsultasi">Konsultasi</option>
+                                    <option value="mata kuliah">Mata Kuliah</option>
+                                </select>
+
+                                <!-- error message untuk content -->
+                                @error('jenisperwalian')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label for="judul">Judul</label>
                                 <input type="text" class="form-control @error('judul') is-invalid @enderror"
                                     name="judul" value="{{ old('judul') }}" required>
@@ -87,6 +103,20 @@
                                 </div>
                                 @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label for="tahun_ajaran">Tahun Ajaran</label>
+                                <input type="text" class="form-control @error('tahun_ajaran') is-invalid @enderror"
+                                    name="tahun_ajaran" value="{{ old('tahun_ajaran') }}" required>
+
+                                <!-- error message untuk title -->
+                                @error('tahun_ajaran')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            
                             <br>
                             <button type="submit" class="btn btn-md btn-primary">Save</button>
                             <a href="{{ route('perwalian.index') }}" class="btn btn-md btn-secondary">back</a>

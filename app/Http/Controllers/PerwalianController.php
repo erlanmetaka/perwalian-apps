@@ -26,6 +26,8 @@ class PerwalianController extends Controller
     public function index()
     {
         $perwalians = Perwalian::latest()->get();
+        // $perwalians = Perwalian::with('dosenWali')->where('mahasiswa_id', Auth::user()->user_id)->get();
+        // dd($perwalians);die;
         return view('perwalians.index', compact('perwalians'));
     }
 
@@ -51,17 +53,21 @@ class PerwalianController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'jenis_perwalian' => 'required',
             'judul' => 'required|string|',
             'isi_perwalian' => 'required',
             'semester' => 'required',
+            'tahun_ajaran' => 'required',
         ]);
 
         $user_id = Auth::user()->user_id;
         $dosenwali_id = DosenWali::select('id')->where('mahasiswa_id','=', $user_id)->firstOrFail();
         $perwalian = Perwalian::create([
+            'jenis_perwalian' => $request->jenis_perwalian,
             'judul' => $request->judul,
             'isi_perwalian' => $request->isi_perwalian,
             'semester' => $request->semester,
+            'tahun_ajaran' => $request->tahun_ajaran,
             'dosenwali_id' => $dosenwali_id->id,
         ]);
 
@@ -116,18 +122,22 @@ class PerwalianController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+            'jenis_perwalian' => 'required',
             'judul' => 'required|string|',
             'isi_perwalian' => 'required',
             'semester' => 'required',
+            'tahun_ajaran' => 'required',
         ]);
 
         $perwalian = Perwalian::findOrFail($id);
         $user_id = Auth::user()->user_id;
         $dosenwali_id = DosenWali::select('id')->where('mahasiswa_id','=', $user_id)->firstOrFail();
         $perwalian->update([
+            'jenis_perwalian' => $request->jenis_perwalian,
             'judul' => $request->judul,
             'isi_perwalian' => $request->isi_perwalian,
             'semester' => $request->semester,
+            'tahun_ajaran' => $request->tahun_ajaran,
             'dosenwali_id' => $dosenwali_id->id,
         ]);
 
@@ -153,6 +163,15 @@ class PerwalianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function history()
+    {
+        $perwalians = Perwalian::latest()->get();
+        // $perwalians = Perwalian::with('dosenWali')->where('mahasiswa_id', Auth::user()->user_id)->get();
+        // dd($perwalians);die;
+        return view('perwalians.history', compact('perwalians'));
+    }
+
     public function destroy($id)
     {
         $perwalian = Perwalian::findOrFail($id);

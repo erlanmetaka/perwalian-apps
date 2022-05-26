@@ -11,7 +11,7 @@
                   <img src="{{ asset('assets/images/user.png') }}" alt=""> {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                  
+                  <a class="dropdown-item" href="{{ route('changePasswordGet') }}">Change Password </a>
                   <a class="dropdown-item"  href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

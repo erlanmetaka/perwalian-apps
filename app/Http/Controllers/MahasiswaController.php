@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use DataTables;
 
 class MahasiswaController extends Controller
 {
@@ -18,6 +19,23 @@ class MahasiswaController extends Controller
         $mahasiswas = Mahasiswa::latest()->get();
         return view('mahasiswas.index', compact('mahasiswas'));
     }
+
+    // public function index(Request $request)
+    // {
+    //     if ($request->ajax()) {
+    //         $datas = Mahasiswa::all();
+    //         return DataTables::of($datas)
+    //             ->addIndexColumn() //memberikan penomoran
+    //             ->addColumn('action', function($mahasiswa){
+    //                 $btn = '<a href="'.route('mahasiswa.edit', $mahasiswa->id).'" class="edit btn btn-sm btn-primary" > <i class="fa fa-edit"></i> Edit</a>
+    //                     <a href="javascript:void(0)" class="edit btn btn-sm btn-danger" onclick="hapus('.$mahasiswa->id.')" > <i class="fa fa-trash"></i> Hapus</a>';
+    //                  return $btn;
+    //          })
+    //          ->rawColumns(['action'])
+    //          ->make(true);
+    //     }
+    //     return view('mahasiswas.index');
+    // }
 
     /**
      * Show the form for creating a new resource.

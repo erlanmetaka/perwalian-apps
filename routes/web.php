@@ -26,10 +26,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/changePassword', [App\Http\Controllers\ChangePasswordController::class, 'showChangePasswordGet'])->name('changePasswordGet');
+Route::post('/changePassword', [App\Http\Controllers\ChangePasswordController::class, 'changePasswordPost'])->name('changePasswordPost');
+
 Route::resource('dosen', DosenController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::resource('perwalian', PerwalianController::class);
 Route::resource('dosen_wali', DosenWaliController::class);
+
+Route::get('/history', [App\Http\Controllers\PerwalianController::class, 'history'])->name('history');
+// Route::get('mahasiswa/index-data', [MahasiswaController::class, 'indexData'])->name('mahasiswa.index-data');
 // Route::resource('users', \App\Http\Controllers\UserController::class)
 //     ->middleware('auth');
 // Route::resource('user', UserController::class);

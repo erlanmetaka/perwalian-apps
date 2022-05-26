@@ -28,13 +28,13 @@
                             <p class="card-text">: {{ Auth::User()->name }}</p>
                         </div>
                         <br> --}}
-                        @can('create perwalian', Post::class)
+                        {{-- @can('create perwalian', Post::class)
                             @if (Auth::user()->role_id == 1)
                             <a href="{{ route('perwalian.create') }}" class="btn btn-md btn-success mb-3 float-right">Tambah
                                 perwalian</a>
                             @endif
-                        @endcan
-
+                        @endcan --}}
+                                
                         <table class="table table-bordered mt-1">
                             <thead>
                                 <tr>
@@ -46,12 +46,12 @@
                                     <th scope="col">Isi Perwalian</th>
                                     <th scope="col">Semester</th>
                                     <th scope="col">Tahun Ajaran</th>
-                                    <th scope="col">Action</th>
+                                    {{-- <th scope="col">Action</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($perwalians as $perwalian)
-                                @if ($perwalian->dosenWali->mahasiswa_id == Auth::user()->user_id || $perwalian->dosenWali->dosen_id == Auth::user()->user_id || Auth::user()->role_id == '3' )
+                                @if ( $perwalian->dosenWali->dosen_id == Auth::user()->user_id  )
                                 <tr>
                                     <td>{{ \Carbon\Carbon::parse($perwalian->updated_at)->format('d M Y H:i') }}</td>
                                     <td>{{ $perwalian->dosenWali->dosen->nama }}</td>
@@ -61,7 +61,7 @@
                                     <td>{{ $perwalian->isi_perwalian }}</td>
                                     <td>{{ $perwalian->semester }}</td>
                                     <td>{{ $perwalian->tahun_ajaran }}</td>
-                                    <td class="text-center">
+                                    {{-- <td class="text-center">
                                         @can('edit perwalian', Post::class)
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                             action="{{ route('perwalian.destroy', $perwalian->id) }}" method="POST">
@@ -74,7 +74,7 @@
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                                         @endcan
                                         </form>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 @endif
                                 @empty

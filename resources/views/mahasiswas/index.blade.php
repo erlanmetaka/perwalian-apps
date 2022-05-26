@@ -64,9 +64,82 @@
                                 @endforelse
                             </tbody>
                         </table>
+
+                        {{-- <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>NIM</th>
+                                    <th>Jurusan</th>
+                                    <th>Email</th>
+                                    <th>Kontak</th>
+                                    <th>Alamat</th>
+                                    <th width="200px">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table> --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        // hapus();
+        // $.noConflict();
+       $(function () {
+          
+          var table = $('.data-table').DataTable({
+              processing: true,
+              serverSide: true,
+              ajax: "{{ route('mahasiswa.index') }}",
+              columns: [
+                  {data: 'id', name: 'id'},
+                  {data: 'nama', name: 'nama'},
+                  {data: 'nim', name: 'nim'},
+                  {data: 'jurusan', name: 'jurusan'},
+                  {data: 'email', name: 'email'},
+                  {data: 'kontak', name: 'kontak'},
+                  {data: 'alamat', name: 'alamat'},
+                  {data: 'action', name: 'action', orderable: false, searchable: false},
+              ]
+          });
+
+            
+        });
+        function hapus(e) {
+                var url = '{{ route("mahasiswa.destroy", ":id") }}';
+                    url = url.replace(':id', e);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                Swal.fire({
+                    title             : "Apakah Anda Yakin ?",
+                    text              : "Data Yang Sudah Dihapus Tidak Bisa Dikembalikan!",
+                    icon              : "warning",
+                    showCancelButton  : true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor : "#d33",
+                    confirmButtonText : "Ya, Tetap Hapus!"
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url    : url,
+                            type   : "delete",
+                            success: function(data) {
+                                $('.yajra-datatable').DataTable().ajax.reload();
+                            }
+                        })
+                    }
+                })
+            }
+    </script>
     @endsection
+
+    @push('javascripts')
+    @endpush

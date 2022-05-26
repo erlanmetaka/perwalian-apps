@@ -10,7 +10,7 @@ class Perwalian extends Model
     use HasFactory;
 
     protected $fillable = [
-        'judul', 'isi_perwalian', 'semester', 'dosenwali_id'
+        'jenis_perwalian' ,'judul', 'isi_perwalian', 'semester', 'dosenwali_id', 'tahun_ajaran'
     ];
 
     public function dosenWali()
